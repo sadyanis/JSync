@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class XmlProfileInitialiser implements ProfileInitialiser {
+public class XmlProfileInitialiser implements ProfilePersistance {
 
     @Override
-    public void initialiseProfilewithRegistery(Profile profile) throws IOException {
+    public void initProfileWithRegistery(Profile profile) throws IOException {
         Path filePath = Path.of(profile.getName() + ".sync");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
@@ -27,5 +27,12 @@ public class XmlProfileInitialiser implements ProfileInitialiser {
             writer.write("</syncProfile>\n");
         }
     }
+
+    @Override
+    public void updateProfileWithRegistery(Profile profile) throws IOException{
+        //
     }
+
+
+}
 
