@@ -1,20 +1,23 @@
 package Profile;
 
-import java.nio.file.Path;
-import java.time.LocalDateTime;
 
-public class FileData  {
+import java.util.Date;
+
+public class FileData implements FileComposant  {
+
     private String path;
-    private LocalDateTime lastModified;
+    private Date lastModified;
 
-    public FileData(String path, LocalDateTime lastModified) {
+    public FileData(String path, Date lastModified) {
         this.path = path;
         this.lastModified = lastModified;
     }
     public String getPath() {
         return path;
     }
-    public LocalDateTime getLastModified() {
+
+
+    public Date getLastModified() {
         return lastModified;
     }
 

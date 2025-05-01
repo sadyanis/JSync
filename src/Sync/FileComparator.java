@@ -1,9 +1,10 @@
 package Sync;
 
+import Profile.FileComposant;
 import Profile.FileData;
 
 import java.util.List;
 
 public interface FileComparator {
-    List<SyncAction> compare (List<FileData> DossierA , List<FileData> DossierB , List<FileData> Register);
+    List<SyncAction> compare (List<FileComposant> DossierA , List<FileComposant> DossierB , List<FileComposant> Register);
 }

@@ -5,7 +5,7 @@ import java.nio.file.Path;
 public class ConcreteProfileCreator implements ProfileCreator {
 
     @Override
-    public Profile createProfile(Path dossierA, Path dossierB, String name) {
+    public Profile createProfile(String dossierA, String dossierB, String name) {
         return new StdProfile(dossierA, dossierB, name) ;
     }
 
