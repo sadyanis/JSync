@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class deleteAction implements SyncAction{
     private String destination;
-    private Date lastModified;
 
-    public deleteAction(String path, Date lastModified) {
+
+    public deleteAction(String path) {
 
 
     }
@@ -17,10 +17,7 @@ public class deleteAction implements SyncAction{
         return this.destination;
     }
 
-    @Override
-    public Date getLastModified() {
-        return this.lastModified;
-    }
+
 
     @Override
     public void accept(SyncActionVisitor visitor) {

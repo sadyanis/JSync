@@ -7,7 +7,8 @@ import java.util.List;
 public class LocalFileHandler implements FileHandler {
     @Override
     public List<FileComposant> getFiles(String path) {
-        return List.of();
+        // Parcourir le répertoire local et retourner la liste des fichiers
+//        
     }
 
     @Override

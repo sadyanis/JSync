@@ -4,5 +4,5 @@ import java.nio.file.Path;
 
 public interface ProfileCreator {
 
-    Profile createProfile(String dossierA,String dossierB, String name);
+    Profile createProfile();
 }

@@ -6,7 +6,8 @@ import java.util.List;
 // class responsable d'enregistrer le profile et le registery dans un fichier
 public interface ProfilePersistance {
 
-    public void initProfileWithRegistery(Profile profile ) throws IOException;
-    public void updateRegistery(List<FileComposant> files);
+    void initProfileWithRegistery(Profile profile ) throws IOException;
+     void updateRegistery(List<FileComposant> files);
+     Profile loadProfile(String path) throws IOException;
 
 }

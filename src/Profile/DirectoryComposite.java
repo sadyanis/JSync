@@ -1,5 +1,6 @@
 package Profile;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -20,4 +21,18 @@ public class DirectoryComposite implements FileComposant {
     public Date getLastModified() {
         return this.children.stream().map(FileComposant::getLastModified).max(Date::compareTo).get();
     }
+    public List<FileComposant> getChildren() {
+         return Collections.unmodifiableList(children);
+    }
+    public void setChildren(List<FileComposant> children) {
+        this.children = children;
+    }
+    public void addChild(FileComposant child) {
+        this.children.add(child);
+    }
+    public void removeChild(FileComposant child) {
+        this.children.remove(child);
+    }
+
+
 }

@@ -17,7 +17,7 @@ public class copyAction implements SyncAction {
         return this.destination;
     }
 
-    @Override
+
     public Date getLastModified() {
         return this.lastModified;
     }
