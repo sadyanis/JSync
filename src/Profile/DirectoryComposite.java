@@ -19,8 +19,17 @@ public class DirectoryComposite implements FileComposant {
 
     @Override
     public Date getLastModified() {
-        return this.children.stream().map(FileComposant::getLastModified).max(Date::compareTo).get();
+        return children.stream()
+                .map(FileComposant::getLastModified)
+                .max(Date::compareTo)
+                .orElse(new Date(0));
     }
+
+    @Override
+    public boolean isDirectory() {
+        return true;
+    }
+    @Override
     public List<FileComposant> getChildren() {
          return Collections.unmodifiableList(children);
     }
@@ -33,6 +42,4 @@ public class DirectoryComposite implements FileComposant {
     public void removeChild(FileComposant child) {
         this.children.remove(child);
     }
-
-
 }

@@ -27,7 +27,7 @@ public class copyAction implements SyncAction {
 
     @Override
     public void accept(SyncActionVisitor visitor ) {
-        visitor.visitCopyAction(this);
+        visitor.visitCopyAction(this,new LocalFileHandler());
     }
 
 

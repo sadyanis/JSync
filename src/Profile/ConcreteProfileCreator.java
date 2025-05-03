@@ -13,7 +13,7 @@ public class ConcreteProfileCreator implements ProfileCreator {
     }
     @Override
     public Profile createProfile() {
-        return new StdProfile(dossierA, dossierB, name) ;
+        return new StdProfile(dossierA, dossierB, name , true , true) ;
     }
 
 }

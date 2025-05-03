@@ -3,23 +3,24 @@ package Sync;
 import Profile.Profile;
 
 public class StdSynchronizer implements Synchronizer {
-    private FileHandlerFactory LocalfileHandlerFactory;
-    private FileHandlerFactory RemoteFileHandlerFactory;
-    private FileHandler fileHandlerA;
-    private FileHandler fileHandlerB;
-    public StdSynchronizer(FileHandlerFactory fileHandlerFactoryA, FileHandlerFactory fileHandlerFactoryB ) {
-    this.LocalfileHandlerFactory = fileHandlerFactoryA;
-    this.RemoteFileHandlerFactory = fileHandlerFactoryB;
+    // pour une premiere version on va synchroniser uniquement les fichiers locals
+    private FileHandlerFactory fileHandlerFactory;
+
+    private FileHandler fileHandler;
+
+    public StdSynchronizer(FileHandlerFactory fileHandlerFactory ) {
+    this.fileHandlerFactory = fileHandlerFactory;
+
     }
 
     @Override
     public void synchronize(Profile profile) {
-      // verifier si le foldeA du profile est local ou distant
-       fileHandlerA = profile.isFolderALocal() ? LocalfileHandlerFactory.createFileHandler() : RemoteFileHandlerFactory.createFileHandler();
-       fileHandlerB = profile.isFolderALocal() ? RemoteFileHandlerFactory.createFileHandler() : LocalfileHandlerFactory.createFileHandler();
+      //
+       fileHandler = fileHandlerFactory.createFileHandler();
+
          // recuperer les fichiers de chaque dossier
-         var filesA = fileHandlerA.getFiles(profile.getPathFolderA());
-         var filesB = fileHandlerB.getFiles(profile.getPathFolderB());
+         var filesA = fileHandler.getFiles(profile.getPathFolderA());
+         var filesB = fileHandler.getFiles(profile.getPathFolderB());
          // Loader le Registre depuis le fichier
 
 

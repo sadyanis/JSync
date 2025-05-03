@@ -6,7 +6,6 @@ import java.util.Date;
 public class deleteAction implements SyncAction{
     private String destination;
 
-
     public deleteAction(String path) {
 
 
@@ -21,6 +20,6 @@ public class deleteAction implements SyncAction{
 
     @Override
     public void accept(SyncActionVisitor visitor) {
-        visitor.visitDeleteAction(this);
+        visitor.visitDeleteAction(this, new LocalFileHandler());
     }
 }
