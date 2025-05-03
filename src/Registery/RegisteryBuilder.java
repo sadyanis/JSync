@@ -1,8 +1,8 @@
 package Registery;
 
-import java.sql.Date;
+import java.util.Date;
 
-interface RegisteryBuilder {
+public interface RegisteryBuilder {
     void addFile(String path, Date lastModified);
     Registery build();
 }

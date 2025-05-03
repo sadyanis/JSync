@@ -1,29 +1,43 @@
 package Registery;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import Profile.FileComposant;
+
 public class MainTest {
     public static void main(String[] args) {
+        getRegistery("registery");
+    }
+
+    public static Registery getRegistery(String name) {
         try {
-            // Chemin vers le fichier XML (ajuste selon ton environnement)
-            String filePath = "registry.xml";
+            String resourcePath = "Registery/" + name + ".sync"; // remplacer Registery par le chemin qui v conteniur les fichies
 
-            // Lire le contenu du fichier XML sous forme de chaîne
-            String xmlData = new String(Files.readAllBytes(Paths.get(filePath)));
+            InputStream is = MainTest.class.getClassLoader().getResourceAsStream(resourcePath);
+            if (is == null) {
+                throw new RuntimeException("Fichier introuvable dans le classpath : " + resourcePath);
+            }
 
-            // Créer les composants
+            String data = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+
             RegisteryBuilder builder = new ConcreteRegisteryBuilder();
             RegisteryParser parser = new XMLRegisteryParser();
             RegisteryLoader loader = new RegisteryLoader(parser, builder);
 
-            // Charger le Registery depuis le XML
-            Registery registery = loader.load(xmlData);
+            Registery registery = loader.load(data);
 
-            // Afficher les fichiers
+            System.out.println("Fichiers trouvés : " + registery.getFiles().size());
             for (FileComposant file : registery.getFiles()) {
                 System.out.println("Path: " + file.getPath() + ", Last Modified: " + file.getLastModified());
             }
+
+            return registery;
+
         } catch (Exception e) {
-            System.err.println("Erreur lors de la lecture ou du parsing du fichier XML : " + e.getMessage());
+            System.err.println("Erreur lors de la lecture ou du parsing du fichier : " + e.getMessage());
             e.printStackTrace();
+            return null;
         }
     }
+
 }

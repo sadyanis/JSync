@@ -1,5 +1,5 @@
 package Registery;
 
-interface RegisteryParser {
+public interface RegisteryParser {
     void parseRegistery(String data, RegisteryBuilder builder) throws Exception;
 }

@@ -1,6 +1,6 @@
 package Registery;
 
-class RegisteryLoader {
+public class RegisteryLoader {
     private RegisteryParser parser;
     private RegisteryBuilder builder;
 
@@ -10,9 +10,7 @@ class RegisteryLoader {
     }
 
     public Registery load(String data) throws Exception {
-        // Utiliser le parser pour lire les données et remplir le builder
         parser.parseRegistery(data, builder);
-        // Retourner le Registery construit
         return builder.build();
     }
 }

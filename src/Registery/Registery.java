@@ -3,6 +3,8 @@ package Registery;
 import java.util.ArrayList;
 import java.util.List;
 
+import Profile.FileComposant;
+
 public class Registery {
     private List<FileComposant> files;
 

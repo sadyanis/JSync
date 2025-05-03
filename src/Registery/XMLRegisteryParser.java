@@ -1,33 +1,47 @@
 package Registery;
 
-class XMLRegisteryParser implements RegisteryParser {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+
+public class XMLRegisteryParser implements RegisteryParser {
     @Override
     public void parseRegistery(String xmlData, RegisteryBuilder builder) throws Exception {
-        // Créer un DocumentBuilder pour parser le XML
+        
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = factory.newDocumentBuilder();
-        Document doc = docBuilder.parse(new java.io.StringBufferInputStream(xmlData));
+        Document doc = docBuilder.parse(new java.io.ByteArrayInputStream(xmlData.getBytes()));
         doc.getDocumentElement().normalize();
 
-        // Récupérer tous les éléments "file"
-        NodeList fileNodes = doc.getElementsByTagName("file");
+        // Aller jusqu'au noeud <registry>
+        NodeList registryNodes = doc.getElementsByTagName("registry");
+        if (registryNodes.getLength() == 0) {
+            throw new Exception("No <registry> element found in the XML");
+        }
 
-        // Format pour parser la date (ISO 8601)
+        Element registryElement = (Element) registryNodes.item(0);
+        NodeList fileNodes = registryElement.getElementsByTagName("file");
+
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-        // Parcourir chaque fichier dans le XML
+        
         for (int i = 0; i < fileNodes.getLength(); i++) {
             Element fileElement = (Element) fileNodes.item(i);
 
-            // Extraire le chemin (path)
             String path = fileElement.getElementsByTagName("path").item(0).getTextContent();
-
-            // Extraire et parser la date de dernière modification
             String lastModifiedStr = fileElement.getElementsByTagName("lastModified").item(0).getTextContent();
             Date lastModified = dateFormat.parse(lastModifiedStr);
 
-            // Ajouter le fichier au builder
+            
             builder.addFile(path, lastModified);
         }
     }
+
 }

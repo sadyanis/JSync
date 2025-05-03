@@ -1,8 +1,9 @@
 package Registery;
 
-import java.sql.Date;
+import java.util.Date;
 
-class ConcreteRegisteryBuilder implements RegisteryBuilder {
+import Profile.FileData;
+public class ConcreteRegisteryBuilder implements RegisteryBuilder {
     private Registery registery;
 
     public ConcreteRegisteryBuilder() {
@@ -11,7 +12,7 @@ class ConcreteRegisteryBuilder implements RegisteryBuilder {
 
     @Override
     public void addFile(String path, Date lastModified) {
-        File file = new File(path, lastModified);
+        FileData file = new FileData(path, lastModified);
         registery.addFile(file);
     }
 
