@@ -96,7 +96,7 @@ public class MainUI {
 
                         // Rediriger vers la nouvelle interface
                         StdSynchronizer synchronizer = new StdSynchronizer(new LocalFileHandlerFactory(), new XmlProfilePersistence(), new StdFileComparator());
-                        new SyncInterface(profile, registery, synchronizer);// passer synchronizer l'objet aussi a l'autre ui
+                        new SyncInterface(profile, registery, synchronizer, frame);// passer synchronizer l'objet aussi a l'autre ui
 
                         frame.dispose(); // Ferme l’ancienne fenêtre
 

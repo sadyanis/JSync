@@ -14,6 +14,8 @@ import Registery.XMLRegisteryParser;
 import Profile.*;
 import org.xml.sax.SAXException;
 
+import Config.Config;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
@@ -41,9 +43,11 @@ public class StdSynchronizer implements Synchronizer {
 
 
     @Override
-    public void synchronize(String ProfilePath) throws IOException, ParserConfigurationException, TransformerException, SAXException {
+    public void synchronize(String ProfileName) throws IOException, ParserConfigurationException, TransformerException, SAXException {
         //initialiser le fileHandler
         fileHandler = fileHandlerFactory.createFileHandler();
+        String ProfilePath = Config.BASE_PATH + "/profiles/" + ProfileName + ".sync";;
+        
         // recuperer le profile
         Profile profile = persistence.loadProfile(ProfilePath);
         // recuprer la liste des fichiers a synchroniser
@@ -76,7 +80,7 @@ public class StdSynchronizer implements Synchronizer {
     public static Registery getRegistery(String name) {
         try {
             // Chemin absolu vers le fichier
-            String filePath = "/home/mysthic/Desktop/JSync/JSync/profiles/" + name + ".sync";
+            String filePath = Config.BASE_PATH+"/profiles/" + name + ".sync";
             
             // Vérification de l'existence du fichier
             File file = new File(filePath);

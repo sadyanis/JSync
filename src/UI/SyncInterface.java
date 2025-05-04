@@ -10,7 +10,7 @@ import Profile.FileComposant;
 
 public class SyncInterface extends JFrame {
 
-    public SyncInterface(Profile profile, Registery registery, Synchronizer synchronizer) {
+    public SyncInterface(Profile profile, Registery registery, Synchronizer synchronizer, JFrame previousFrame) {
         setTitle("Synchronisation - " + profile.getName());
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,13 +19,23 @@ public class SyncInterface extends JFrame {
         // Panel gauche avec bouton de synchronisation
         JPanel leftPanel = new JPanel(new BorderLayout());
         JButton syncButton = new JButton("Lancer la synchronisation");
+        
+        JButton backButton = new JButton("Retour");
+        leftPanel.add(backButton, BorderLayout.SOUTH);
+        
+        backButton.addActionListener(e -> {
+            previousFrame.setVisible(true); // Affiche l'interface précédente
+            dispose(); // Ferme l'interface actuelle
+        });
+        
         leftPanel.add(syncButton, BorderLayout.NORTH);
 
         // ➕ Action quand on clique sur le bouton
         syncButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    synchronizer.synchronize("/home/mysthic/Desktop/JSync/JSync/mouloud.sync");
+                    //synchronizer.synchronize("/home/mysthic/Desktop/JSync/JSync/profiles/mouloud.sync");
+                    synchronizer.synchronize(profile.getName());
                     JOptionPane.showMessageDialog(null, "Synchronisation terminée !");
                 } catch (Exception ex) {
                     ex.printStackTrace();

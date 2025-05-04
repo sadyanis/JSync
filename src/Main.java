@@ -41,9 +41,9 @@ public class Main {
         register.add(new FileData("test2.txt", new Date()));
         ProfilePersistence persistance = new XmlProfilePersistence();
         persistance.serializeRegistry(register, "/home/mysthic/Desktop/JSync/JSync/mouloud.sync");
-        // tester la synchronization
-        StdSynchronizer synchronizer = new StdSynchronizer(new LocalFileHandlerFactory(), new XmlProfilePersistence(), new StdFileComparator());
-        synchronizer.synchronize("/home/mysthic/Desktop/JSync/JSync/mouloud.sync");
+        // Tester la synchronization
+        //StdSynchronizer synchronizer = new StdSynchronizer(new LocalFileHandlerFactory(), new XmlProfilePersistence(), new StdFileComparator());
+        //synchronizer.synchronize("/home/mysthic/Desktop/JSync/JSync/mouloud.sync");
 
 
     }

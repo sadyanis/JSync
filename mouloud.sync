@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <syncProfile>
-                                
+                                        
+  
+  
+  
+  
   
   
   
@@ -16,7 +20,11 @@
   
   
   <name>mouloud</name>
-                                
+                                        
+  
+  
+  
+  
   
   
   
@@ -32,7 +40,11 @@
   
   
   <folderA>/home/mysthic/Desktop/JSync/JSync/Bouzid</folderA>
-                               
+                                       
+  
+  
+  
+  
   
   
   
@@ -49,7 +61,11 @@
   
   
   <folderB>/home/mysthic/Desktop/JSync/JSync/yanis</folderB>
-                                
+                                        
+  
+  
+  
+  
   
   
   
@@ -69,6 +85,16 @@
       <path>test2.txt</path>
       <lastModified>2025-05-04T12:24:02.704Z</lastModified>
     </file>
+    <directory>
+      <path>local.dir</path>
+      <lastModified>1970-01-01T00:00:00Z</lastModified>
+      <files/>
+    </directory>
+    <directory>
+      <path>bob.dir</path>
+      <lastModified>1970-01-01T00:00:00Z</lastModified>
+      <files/>
+    </directory>
     <file>
       <path>Archi.txt</path>
       <lastModified>2025-05-04T12:24:02.698Z</lastModified>
@@ -83,12 +109,12 @@
         </file>
       </files>
     </directory>
-    <file>
-      <path>test3.yaml</path>
-      <lastModified>2025-05-04T12:24:02.704Z</lastModified>
-    </file>
   </registry>
-                              
+                                      
+
+
+
+
 
 
 
