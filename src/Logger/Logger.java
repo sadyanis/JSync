@@ -1,6 +1,8 @@
 package Logger;
 
-
+/*
+* interface qui définit les méthodes de journalisation.
+* */
 public interface Logger {
     Logger instanceLogger();
     Logger getInstance();

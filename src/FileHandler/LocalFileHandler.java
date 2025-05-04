@@ -16,12 +16,24 @@ import File.FileComposant;
 import File.FileData;
 
 public class LocalFileHandler implements FileHandler {
+    /**
+     * Récupère une liste de composants de fichiers à partir d'un chemin donné.
+     *
+     * @param basePath Le chemin de base du répertoire.
+     * @return Une liste de composants de fichiers ou répertoires.
+     */
     @Override
-
     public List<FileComposant> getFiles(String basePath) {
         return getFilesRecursive(new File(basePath), basePath);
     }
 
+    /**
+     * Méthode récursive pour récupérer les fichiers et répertoires dans un chemin donné.
+     *
+     * @param current   Le fichier ou répertoire courant.
+     * @param basePath  Le chemin de base pour calculer les chemins relatifs.
+     * @return Une liste de composants de fichiers ou répertoires.
+     */
     private List<FileComposant> getFilesRecursive(File current, String basePath) {
         List<FileComposant> components = new ArrayList<>();
 
@@ -47,7 +59,13 @@ public class LocalFileHandler implements FileHandler {
         return components;
     }
 
-
+    /**
+     * Copie un fichier ou un répertoire d'une source vers une destination.
+     *
+     * @param source      Le chemin source.
+     * @param destination Le chemin de destination.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     */
     @Override
     public void copyFile(String source, String destination) throws IOException {
         Path src = Paths.get(source);
@@ -82,6 +100,11 @@ public class LocalFileHandler implements FileHandler {
         }
     }
 
+    /**
+     * Supprime un fichier ou un répertoire à partir d'un chemin donné.
+     *
+     * @param path Le chemin du fichier ou répertoire à supprimer.
+     */
     @Override
     public void deleteFile(String path) {
         Path target = Paths.get(path);

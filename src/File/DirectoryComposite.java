@@ -3,7 +3,10 @@ package File;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Représente un répertoire contenant de fichiers .
+ * Implémente l'interface {@link FileComposant}.
+ */
 public class DirectoryComposite implements FileComposant {
    private String path;
    private List<FileComposant> children;

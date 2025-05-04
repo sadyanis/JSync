@@ -26,6 +26,12 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class XmlProfilePersistence implements ProfilePersistence {
+    /**
+     * Initialise un profil en créant un fichier .sync (XML) contenant ses données.
+     *
+     * @param profile Le profil à initialiser.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     */
     @Override
     public void initProfileWithRegistery(Profile profile) throws IOException {
         //Path filePath = Path.of(profile.getName() + ".sync");
@@ -51,12 +57,27 @@ public class XmlProfilePersistence implements ProfilePersistence {
 
         }
     }
-
+    /**
+     * Met à jour le registre d'un profil .
+     *
+     * @param files La liste des composants de fichiers à sérialiser.
+     * @param path  Le chemin du fichier XML à mettre à jour.
+     * @throws IOException                  Si une erreur d'entrée/sortie se produit.
+     * @throws TransformerException         Si une erreur de transformation XML se produit.
+     * @throws ParserConfigurationException Si une erreur de configuration du parseur se produit.
+     * @throws SAXException                 Si une erreur SAX se produit.
+     */
     @Override
     public void updateRegistery(List<FileComposant> files) {
 
     }
-
+    /**
+     * Charge un profil à partir d'un fichier .sync.
+     *
+     * @param path Le chemin du fichier XML contenant le profil.
+     * @return Le profil chargé.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     */
     @Override
     public Profile loadProfile(String path) throws IOException {
         //retourner un objet profile depuis le fichier .sync qui contient le profile en xml

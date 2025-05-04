@@ -9,8 +9,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.util.List;
+/**
+ * Interface responsable de la persistance des profils et des registres.
+ * Fournit des méthodes pour sérialiser, initialiser, mettre à jour et charger des profils et registres.
+ */
 
-// class responsable d'enregistrer le profile et le registery dans un fichier
 public interface ProfilePersistence {
     public void serializeRegistry(List<FileComposant> files, String path)throws IOException, TransformerException, ParserConfigurationException, SAXException;
     void initProfileWithRegistery(Profile profile ) throws IOException;

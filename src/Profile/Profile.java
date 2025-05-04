@@ -1,7 +1,10 @@
 package Profile;
 
 import java.nio.file.Path;
-
+/**
+ * Interface représentant un profil de synchronisation.
+ * Définit les méthodes pour accéder aux informations des dossiers et leur localisation.
+ */
 public interface Profile {
 
     public String getName();
