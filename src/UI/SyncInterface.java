@@ -5,9 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 import Profile.Profile;
 import Registery.Registery;
+import Sync.Synchronizer;
 import Profile.FileComposant;
 public class SyncInterface extends JFrame {
-        public SyncInterface(Profile profile, Registery registery) {
+        public SyncInterface(Profile profile, Registery registery, Synchronizer synchronizer) {
             setTitle("Synchronisation - " + profile.getName());
             setSize(600, 400);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -96,7 +96,7 @@ public class MainUI {
                         Registery registery = loader.load(data);
 
                         // Rediriger vers la nouvelle interface
-                        new SyncInterface(profile, registery);
+                        new SyncInterface(profile, registery, synchronizer);
 
                         frame.dispose(); // Ferme l’ancienne fenêtre
 
