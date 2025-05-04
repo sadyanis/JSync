@@ -6,12 +6,12 @@ import java.util.List;
 
 public class StdRegistery implements Registery {
     private LocalDateTime lastUpdate;
-    private List<FileData> files;
+    private List<FileComposant> files;
 
     public StdRegistery() {
         files = new ArrayList<>();
     }
-    public StdRegistery(List<FileData> files , LocalDateTime lastUpdate) {
+    public StdRegistery(List<FileComposant> files , LocalDateTime lastUpdate) {
         this.files = files;
         this.lastUpdate = lastUpdate;
     }
@@ -21,7 +21,7 @@ public class StdRegistery implements Registery {
     }
 
     @Override
-    public List<FileData> getFiles() {
+    public List<FileComposant> getRegistryFiles() {
         return files;
     }
 }

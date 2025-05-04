@@ -7,6 +7,20 @@
         <path>/chemin/vers/fichier1.txt</path>
         <lastModified>2025-05-03T12:00:00Z</lastModified>
     </file>
+      <directory>
+        <path>/chemin/vers/dossier1</path>
+        <lastModified>2025-05-03T12:00:00Z</lastModified>
+          <files>
+           <file>
+                <path>/chemin/vers/fichier1.txt</path>
+                <lastModified>2025-05-03T12:00:00Z</lastModified>
+            </file>
+          <file>
+                <path>/chemin/vers/fichier2.txt</path>
+                <lastModified>2025-05-03T12:30:00Z</lastModified>
+            </file>
+          </files>
+      </directory>
     <file>
         <path>/chemin/vers/fichier2.txt</path>
         <lastModified>2025-05-03T12:30:00Z</lastModified>

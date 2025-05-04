@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface Registery {
     LocalDateTime getLastUpdate();
-    List<FileData> getFiles();
+    List<FileComposant> getRegistryFiles();
 }
