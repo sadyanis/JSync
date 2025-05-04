@@ -21,6 +21,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class StdSynchronizer implements Synchronizer {
     // pour une premiere version on va synchroniser uniquement les fichiers locals
@@ -68,40 +70,51 @@ public class StdSynchronizer implements Synchronizer {
          //var filesB = fileHandler.getFiles(profile.getPathFolderB());
          // Loader le Registre depuis le fichier
 
-
-
-
-
     }
+    
     
     public static Registery getRegistery(String name) {
         try {
-            String resourcePath = "profiles/" + name + ".sync"; // remplacer Registery par le chemin qui v conteniur les fichies
-
-            InputStream is = MainTest.class.getClassLoader().getResourceAsStream(resourcePath);
-            if (is == null) {
-                throw new RuntimeException("Fichier introuvable dans le classpath : " + resourcePath);
+            // Chemin absolu vers le fichier
+            String filePath = "/home/mysthic/Desktop/JSync/JSync/profiles/" + name + ".sync";
+            
+            // Vérification de l'existence du fichier
+            File file = new File(filePath);
+            if (!file.exists()) {
+                throw new RuntimeException("Fichier introuvable : " + filePath);
             }
 
+            // Lecture du fichier avec FileInputStream
+            InputStream is = new FileInputStream(file);
             String data = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+            is.close(); // Assurez-vous de fermer le flux après la lecture.
 
+            // Création de l'objet Registery à partir des données lues
             RegisteryBuilder builder = new ConcreteRegisteryBuilder();
             RegisteryParser parser = new XMLRegisteryParser();
             RegisteryLoader loader = new RegisteryLoader(parser, builder);
 
+            // Charger les données dans l'objet Registery
             Registery registery = loader.load(data);
 
+            // Affichage des fichiers trouvés
             System.out.println("Fichiers trouvés : " + registery.getFiles().size());
-            for (FileComposant file : registery.getFiles()) {
-                System.out.println("Path: " + file.getPath() + ", Last Modified: " + file.getLastModified());
+            for (FileComposant fileComp : registery.getFiles()) {
+                System.out.println("Path: " + fileComp.getPath() + ", Last Modified: " + fileComp.getLastModified());
             }
 
+            // Retourner l'objet Registery
             return registery;
 
         } catch (Exception e) {
+            // Gérer les exceptions
             System.err.println("Erreur lors de la lecture ou du parsing du fichier : " + e.getMessage());
             e.printStackTrace();
             return null;
         }
     }
+
+
+    
+   
 }
