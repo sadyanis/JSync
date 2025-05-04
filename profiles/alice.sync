@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<syncProfile>
+    
+  <name>alice</name>
+    
+  <folderA>/home/mysthic/Desktop/JSync/JSync/aliceDossier1</folderA>
+    
+  <folderB>/home/mysthic/Desktop/JSync/JSync/aliceDossier2</folderB>
+  
+  <isFolderALocal>false</isFolderALocal>
+  
+  <isFolderBLocal>false</isFolderBLocal>
+  
+  <registry>
+    <file>
+      <path>alice1</path>
+      <lastModified>2025-05-04T21:09:13.265Z</lastModified>
+    </file>
+  </registry>
+  
+</syncProfile>
