@@ -2,8 +2,6 @@ package Sync;
 
 
 
-import Profile.FileComposant;
-import Profile.Profile;
 import Registery.ConcreteRegisteryBuilder;
 import Registery.MainTest;
 import Registery.Registery;
@@ -12,9 +10,14 @@ import Registery.RegisteryLoader;
 import Registery.RegisteryParser;
 import Registery.XMLRegisteryParser;
 import Profile.*;
+import ProfilePersistence.ProfilePersistence;
+
 import org.xml.sax.SAXException;
 
 import Config.Config;
+import File.FileComposant;
+import FileHandler.FileHandler;
+import FileHandler.FileHandlerFactory;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;

@@ -1,6 +1,9 @@
-package Profile;
+package ProfilePersistence;
 
 import org.xml.sax.SAXException;
+
+import File.FileComposant;
+import Profile.Profile;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;

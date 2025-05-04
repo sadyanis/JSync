@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syncProfile>
+  <name>bob</name>
+  <folderA>test!</folderA>
+  <folderB>test2</folderB>
+<isFolderALocal>false</isFolderALocal>
+<isFolderBLocal>false</isFolderBLocal>
+<registry>
+</registry>
+</syncProfile>

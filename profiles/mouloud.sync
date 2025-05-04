@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <syncProfile>
-                  
+                    
+  
   
   
   
@@ -9,7 +10,8 @@
   
   
   <name>mouloud</name>
-                  
+                    
+  
   
   
   
@@ -18,7 +20,8 @@
   
   
   <folderA>/home/mysthic/Desktop/JSync/JSync/Bouzid</folderA>
-                 
+                   
+  
   
   
   
@@ -28,7 +31,8 @@
   
   
   <folderB>/home/mysthic/Desktop/JSync/JSync/yanis</folderB>
-                  
+                    
+  
   
   
   
@@ -42,6 +46,10 @@
       <lastModified>1970-01-01T00:00:00Z</lastModified>
       <files/>
     </directory>
+    <file>
+      <path>conflict1.test</path>
+      <lastModified>2025-05-04T17:58:59.721Z</lastModified>
+    </file>
     <file>
       <path>test2.txt</path>
       <lastModified>2025-05-04T12:24:02.704Z</lastModified>
@@ -81,7 +89,8 @@
       <files/>
     </directory>
   </registry>
-                
+                  
+
 
 
 

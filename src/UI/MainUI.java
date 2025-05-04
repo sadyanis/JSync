@@ -5,6 +5,10 @@ import Registery.*;
 import Sync.*;
 import Registery.Registery;
 import javax.swing.*;
+
+import FileHandler.FileHandlerFactory;
+import FileHandler.LocalFileHandlerFactory;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,7 +21,8 @@ import Sync.*;
 import Registery.Registery;
 import Registery.RegisteryBuilder;
 import Registery.RegisteryParser;
-import Profile.XmlProfilePersistence;
+import ProfilePersistence.ProfilePersistence;
+import ProfilePersistence.XmlProfilePersistence;
 public class MainUI {
 	
 	private static final ProfilePersistence profilePersistance = new XmlProfilePersistence(); // Ensure XmlProfilePersistance implements ProfilePersistance

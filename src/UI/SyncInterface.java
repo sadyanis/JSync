@@ -1,12 +1,14 @@
 package UI;
 
 import javax.swing.*;
+
+import File.FileComposant;
+
 import java.awt.*;
 import java.awt.event.*;
 import Profile.Profile;
 import Registery.Registery;
 import Sync.Synchronizer;
-import Profile.FileComposant;
 
 public class SyncInterface extends JFrame {
 

@@ -2,7 +2,7 @@ package Sync;
 
 
 import Enums.Direction;
-import Profile.FileComposant;
+import File.FileComposant;
 
 import java.util.stream.Collectors;
 import java.io.InputStream;
@@ -122,17 +122,17 @@ public class StdFileComparator implements FileComparator {
     // determine l'etat d'un fichier par rapport au registre
     private String getFileState(FileComposant file, FileComposant registryFile) {
         if (file == null) {
-            return "T";  // Absent
+            return "T";  // absent
         }
         if (registryFile == null) {
-            return "+";  // Nouveau
+            return "+";  // nouveau
         }
         Date lastModified = file.getLastModified();
         Date registryDate = registryFile.getLastModified();
         if (lastModified.after(registryDate)) {
-            return "+";  // Modifié
+            return "+";  // modifié
         }
-        return "=";  // Inchangé
+        return "=";  // inchangé
     }
     // genere les actions de synchronisation pour un fichier selon les etats dans A et B
     private List<SyncAction> generateActionsForFile(String path, String stateA, String stateB, FileComposant fileA, FileComposant fileB) {
@@ -153,9 +153,14 @@ public class StdFileComparator implements FileComparator {
             // Fichier modifié dans B, mettre à jour A
             actions.add(new copyAction(path, Direction.B_TO_A, fileB.getLastModified()));
         } else if (stateA.equals("+") && stateB.equals("+")) {
-            // Conflit : les deux fichiers ont été modifiés
-            // Stratégie : copier le fichier le plus récent
-            if (fileA.getLastModified().after(fileB.getLastModified())) {
+
+            // demander au user
+            // je veux demander au user de choisir entre 1 ou 2 , 1 pour A_TO_B et 2 pour B_TO_A
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Le fichier " + path + " a été modifié dans les deux dossiers. Choisissez l'action :\n" +
+                    "1. Copier de A vers B\n" +"2.Copier de B vers A \n"  );
+            int choice = scanner.nextInt();
+            if (choice == 1) {
                 actions.add(new copyAction(path,Direction.A_TO_B  , fileA.getLastModified()));
             } else {
                 actions.add(new copyAction(path, Direction.B_TO_A, fileB.getLastModified()));
@@ -171,7 +176,35 @@ public class StdFileComparator implements FileComparator {
         return actions;
     }
 
-    
+    public static Registery getRegistery(String name) {
+        try {
+            String resourcePath = "Registery/" + name + ".sync"; // remplacer Registery par le chemin qui v conteniur les fichies
+
+            InputStream is = MainTest.class.getClassLoader().getResourceAsStream(resourcePath);
+            if (is == null) {
+                throw new RuntimeException("Fichier introuvable dans le classpath : " + resourcePath);
+            }
+
+            String data = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+
+            RegisteryBuilder builder = new ConcreteRegisteryBuilder();
+            RegisteryParser parser = new XMLRegisteryParser();
+            RegisteryLoader loader = new RegisteryLoader(parser, builder);
+
+            Registery registery = loader.load(data);
+
+            System.out.println("Fichiers trouvés : " + registery.getFiles().size());
+            for (FileComposant file : registery.getFiles()) {
+                System.out.println("Path: " + file.getPath() + ", Last Modified: " + file.getLastModified());
+            }
+
+            return registery;
+
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la lecture ou du parsing du fichier : " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
     
 }
-

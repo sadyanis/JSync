@@ -1,8 +1,8 @@
-package Sync;
-
-import Profile.FileComposant;
+package FileHandler;
 
 import java.util.List;
+
+import File.FileComposant;
 
 public class RemoteFileHandler implements FileHandler {
 
