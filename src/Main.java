@@ -29,9 +29,9 @@ public class Main {
         }
 
 
-        // tester la methode copyFile de FileHandler
-        String source = "D:\\CoursM1\\Architecture_Logicielle\\projet\\FileSynchronizer\\yanis\\Archi.txt";
-        String destination = "D:\\CoursM1\\Architecture_Logicielle\\projet\\FileSynchronizer\\Bouzid\\test2.txt";
+     // tester la methode copyFile de FileHandler
+        String source = "/home/mysthic/Desktop/JSync/JSync/yanis/Archi.txt";
+        String destination = "/home/mysthic/Desktop/JSync/JSync/Bouzid/test2.txt";
         FileHandler filehandler2 = new LocalFileHandler();
         filehandler2.copyFile(source,destination);
         // tester la serialisation du registre
@@ -40,10 +40,10 @@ public class Main {
         register.add(new DirectoryComposite("test", new ArrayList<>()));
         register.add(new FileData("test2.txt", new Date()));
         ProfilePersistence persistance = new XmlProfilePersistence();
-        persistance.serializeRegistry(register, "D:\\CoursM1\\Architecture_Logicielle\\projet\\FileSynchronizer\\yanis.sync");
+        persistance.serializeRegistry(register, "/home/mysthic/Desktop/JSync/JSync/mouloud.sync");
         // tester la synchronization
-        StdSynchronizer synchronizer = new StdSynchronizer(new LocalFileHandlerFactory(), new XmlProfilePersistence(), new StdFileComparator());
-        synchronizer.synchronize("D:\\CoursM1\\Architecture_Logicielle\\projet\\FileSynchronizer\\yanis.sync");
+        //StdSynchronizer synchronizer = new StdSynchronizer(new LocalFileHandlerFactory(), new XmlProfilePersistence(), new StdFileComparator());
+        //synchronizer.synchronize("/home/mysthic/Desktop/JSync/JSync/mouloud.sync");
 
 
     }

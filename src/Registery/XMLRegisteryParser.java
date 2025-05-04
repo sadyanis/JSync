@@ -29,8 +29,8 @@ public class XMLRegisteryParser implements RegisteryParser {
         NodeList fileNodes = registryElement.getElementsByTagName("file");
 
         
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         
         for (int i = 0; i < fileNodes.getLength(); i++) {
             Element fileElement = (Element) fileNodes.item(i);

@@ -1,0 +1,20 @@
+<syncProfile>
+  <name>yanis</name>
+  <folderA>C:\Users\yanis\Desktop\test.txt</folderA>
+  <folderB>C:\Users\yanis\Desktop\test2.txt</folderB>
+  <registry>
+    <file>
+        <path>/chemin/vers/fichier1.txt</path>
+        <lastModified>2025-05-03T12:00:00Z</lastModified>
+    </file>
+    <file>
+        <path>/chemin/vers/fichier2.txt</path>
+        <lastModified>2025-05-03T12:30:00Z</lastModified>
+    </file>
+    <file>
+        <path>/chemin/vers/git.txt</path>
+        <lastModified>2025-12-03T12:30:00Z</lastModified>
+    </file>
+</registry>
+</syncProfile>
+
