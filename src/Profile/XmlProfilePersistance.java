@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.IOException;
+import Profile.XmlProfile;
 
 public class XmlProfilePersistance implements ProfilePersistance{
     @Override
@@ -37,8 +42,22 @@ public class XmlProfilePersistance implements ProfilePersistance{
 
     @Override
     public Profile loadProfile(String path) throws IOException {
-        //retourner un objet profile depuis le fichier .sync qui contient le profile en xml
+    	try {
+            JAXBContext context = JAXBContext.newInstance(XmlProfile.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            XmlProfile syncProfile = (XmlProfile) unmarshaller.unmarshal(new File(path));
 
-    return null;
+            // Retourner un objet anonyme implémentant Profile
+            return new Profile() {
+                public String getName() { return syncProfile.getName(); }
+                public String getPathFolderA() { return syncProfile.getFolderA(); }
+                public String getPathFolderB() { return syncProfile.getFolderB(); }
+                public boolean isFolderALocal() { return false; } 
+                public boolean isFolderBLocal() { return false; }
+            };
+
+        } catch (Exception e) {
+            throw new IOException("Erreur lors du chargement du profil depuis " + path, e);
+        }
     }
 }
