@@ -1,11 +1,9 @@
 package UI;
 
-import Profile.Profile;
+import Profile.*;
 import Registery.*;
-import Sync.FileHandlerFactory;
-import Sync.LocalFileHandlerFactory;
-import Sync.StdSynchronizer;
-
+import Sync.*;
+import Registery.Registery;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -16,9 +14,10 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 public class MainUI {
 	
-	private static final ProfilePersistence profilePersistance = new XmlProfilePersistance(); // Ensure XmlProfilePersistance implements ProfilePersistance
-	private static final FileHandlerFactory fileHandlerFactory = new LocalFileHandlerFactory(); 
-	private static final StdSynchronizer synchronizer = new StdSynchronizer(fileHandlerFactory);
+	private static final ProfilePersistence profilePersistance = new XmlProfilePersistence(); // Ensure XmlProfilePersistance implements ProfilePersistance
+	private static final FileHandlerFactory fileHandlerFactory = new LocalFileHandlerFactory();
+    private static final FileComparator comparator = new StdFileComparator();
+	private static final StdSynchronizer synchronizer = new StdSynchronizer(fileHandlerFactory, profilePersistance, comparator );
 	
     public static void main(String[] args) {
 

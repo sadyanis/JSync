@@ -68,30 +68,41 @@ public class StdFileComparator implements FileComparator {
 //        private Map<String, FileComposant> toMap(List<FileComposant> files) {
 //            return files.stream().collect(Collectors.toMap(FileComposant::getPath, f -> f));
 //        }
-    public List<SyncAction> compare(List<FileComposant> folderA, List<FileComposant> folderB, List<FileComposant> registery){
+    public List<SyncAction> compare(List<FileComposant> folderA, List<FileComposant> folderB, List<FileComposant> registry) {
         List<SyncAction> actions = new ArrayList<>();
-        // Recuperer tous les chemins uniques dans A et B et registry
-        List<String> allPaths = getAllPaths(folderA, folderB, registery);
-        for (String path : allPaths ){
+        List<String> allPaths = getAllPaths(folderA, folderB, registry);
+
+        for (String path : allPaths) {
             FileComposant fileA = findFileByPath(path, folderA);
             FileComposant fileB = findFileByPath(path, folderB);
-            FileComposant registryFile = findFileByPath(path, registery);
+            FileComposant registryFile = findFileByPath(path, registry);
 
-            // si c'est dossier comparer recursivement ses enfants
-            if(fileA != null && fileA.isDirectory() || fileB != null && fileB.isDirectory()){
+            boolean isDirectory = (fileA != null && fileA.isDirectory()) || (fileB != null && fileB.isDirectory());
+
+            if (isDirectory) {
+                // Gérer la copie du dossier lui-même (si nouveau)
+                if (registryFile == null) {
+                    if (fileA != null && fileB == null) {
+                        actions.add(new copyAction(path, Direction.A_TO_B, fileA.getLastModified()));
+                    } else if (fileB != null && fileA == null) {
+                        actions.add(new copyAction(path, Direction.B_TO_A, fileB.getLastModified()));
+                    }
+                }
+
+                // Comparer récursivement le contenu
                 List<FileComposant> childrenA = fileA != null ? fileA.getChildren() : new ArrayList<>();
                 List<FileComposant> childrenB = fileB != null ? fileB.getChildren() : new ArrayList<>();
                 List<FileComposant> childrenRegistry = registryFile != null ? registryFile.getChildren() : new ArrayList<>();
 
                 actions.addAll(compare(childrenA, childrenB, childrenRegistry));
             } else {
-                // si c'est un fichier comparer les dates
+                // Comparaison des fichiers
                 String stateA = getFileState(fileA, registryFile);
                 String stateB = getFileState(fileB, registryFile);
                 actions.addAll(generateActionsForFile(path, stateA, stateB, fileA, fileB));
-
             }
         }
+
         return actions;
     }
     private List<String> getAllPaths(List<FileComposant> folderA, List<FileComposant> folderB, List<FileComposant> registry) {

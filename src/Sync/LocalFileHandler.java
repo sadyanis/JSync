@@ -6,6 +6,7 @@ import Profile.FileData;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -75,8 +76,26 @@ public class LocalFileHandler implements FileHandler {
     public void copyFile(String source, String destination) throws IOException {
         Path src = Paths.get(source);
         Path dest = Paths.get(destination);
-        // Creer les repertoires parents si ils n'existent pas
-        if (dest.getParent() != null) {
+
+        if (Files.isDirectory(src)) {
+            // Copie récursive du dossier
+            Files.walk(src).forEach(path -> {
+                try {
+                    Path targetPath = dest.resolve(src.relativize(path));
+                    if (Files.isDirectory(path)) {
+                        Files.createDirectories(targetPath);
+                    } else {
+                        Files.copy(path, targetPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+                    }
+                } catch (IOException e) {
+                    throw new UncheckedIOException(e);
+                }
+            });
+        } else {
+            // Copie d'un fichier simple
+            if (dest.getParent() != null) {
+                Files.createDirectories(dest.getParent()); // Crée les dossiers parents si besoin
+            }
             Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
         }
     }
