@@ -1,33 +1,38 @@
 package Sync;
 
+
+import Enums.Direction;
+
 import java.util.Date;
 
 public class copyAction implements SyncAction {
-    private String source;
-    private String destination;
+    private String relativePath;
+    private Direction direction;
     private Date lastModified;
-    public copyAction(String source , String target , Date lastModified ) {
-        this.destination = target;
-        this.source = source;
+    public copyAction(String relativePath , Direction direction , Date lastModified ) {
+        this.relativePath = relativePath;
+        this.direction = direction;
         this.lastModified = lastModified;
     }
 
     @Override
-    public String getDestinationPath() {
-        return this.destination;
+    public String getPath() {
+        return this.relativePath;
     }
 
 
     public Date getLastModified() {
         return this.lastModified;
     }
-    public String getSourcePath() {
-        return this.source;
+    public Direction getDirection() {
+        return this.direction;
     }
+
 
     @Override
     public void accept(SyncActionVisitor visitor ) {
-        visitor.visitCopyAction(this,new LocalFileHandler());
+
+        visitor.visitCopyAction(this);
     }
 
 

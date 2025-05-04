@@ -24,5 +24,14 @@ public class Main {
                 //afficher les fichiers dans le repertoire
 
         }
+
+
+        // tester la methode copyFile de FileHandler
+        String source = "D:\\CoursM1\\Architecture_Logicielle\\projet\\FileSynchronizer\\yanis\\Archi.txt";
+        String destination = "D:\\CoursM1\\Architecture_Logicielle\\projet\\FileSynchronizer\\Bouzid\\test2.txt";
+        FileHandler filehandler2 = new LocalFileHandler();
+        filehandler2.copyFile(source,destination);
+
+
     }
 }

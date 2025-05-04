@@ -5,6 +5,11 @@ import Profile.FileComposant;
 import Profile.FileData;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,12 +72,22 @@ public class LocalFileHandler implements FileHandler {
 
 
     @Override
-    public void copyFile(String source, String destination) {
-
+    public void copyFile(String source, String destination) throws IOException {
+        Path src = Paths.get(source);
+        Path dest = Paths.get(destination);
+        // Creer les repertoires parents si ils n'existent pas
+        if (dest.getParent() != null) {
+            Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+        }
     }
 
     @Override
     public void deleteFile(String path) {
-
+        Path target = Paths.get(path);
+        try {
+            Files.deleteIfExists(target);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

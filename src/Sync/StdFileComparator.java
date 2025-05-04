@@ -1,5 +1,7 @@
 package Sync;
 
+
+import Enums.Direction;
 import Profile.FileComposant;
 import java.util.stream.Collectors;
 import java.util.*;
@@ -102,7 +104,7 @@ public class StdFileComparator implements FileComparator {
     // determine l'etat d'un fichier par rapport au registre
     private String getFileState(FileComposant file, FileComposant registryFile) {
         if (file == null) {
-            return "⊥";  // Absent
+            return "T";  // Absent
         }
         if (registryFile == null) {
             return "+";  // Nouveau
@@ -118,34 +120,34 @@ public class StdFileComparator implements FileComparator {
     private List<SyncAction> generateActionsForFile(String path, String stateA, String stateB, FileComposant fileA, FileComposant fileB) {
         List<SyncAction> actions = new ArrayList<>();
 
-        if (stateA.equals("+") && stateB.equals("⊥")) {
+        if (stateA.equals("+") && stateB.equals("T")) {
             // Nouveau fichier dans A, copier vers B
-            actions.add(new copyAction(path, path, fileA.getLastModified()));
-        } else if (stateA.equals("⊥") && stateB.equals("+")) {
+            actions.add(new copyAction(path, Direction.A_TO_B, fileA.getLastModified()));
+        } else if (stateA.equals("T") && stateB.equals("+")) {
             // Nouveau fichier dans B, copier vers A
-            actions.add(new copyAction(path, path, fileB.getLastModified()));
+            actions.add(new copyAction(path, Direction.B_TO_A, fileB.getLastModified()));
         } else if (stateA.equals("=") && stateB.equals("=")) {
             // Pas de changement, aucune action
         } else if (stateA.equals("+") && stateB.equals("=")) {
             // Fichier modifié dans A, mettre à jour B
-            actions.add(new copyAction(path, path, fileA.getLastModified()));
+            actions.add(new copyAction(path, Direction.A_TO_B, fileA.getLastModified()));
         } else if (stateA.equals("=") && stateB.equals("+")) {
             // Fichier modifié dans B, mettre à jour A
-            actions.add(new copyAction(path, path, fileB.getLastModified()));
+            actions.add(new copyAction(path, Direction.B_TO_A, fileB.getLastModified()));
         } else if (stateA.equals("+") && stateB.equals("+")) {
             // Conflit : les deux fichiers ont été modifiés
             // Stratégie : copier le fichier le plus récent
             if (fileA.getLastModified().after(fileB.getLastModified())) {
-                actions.add(new copyAction(path, path, fileA.getLastModified()));
+                actions.add(new copyAction(path,Direction.A_TO_B  , fileA.getLastModified()));
             } else {
-                actions.add(new copyAction(path, path, fileB.getLastModified()));
+                actions.add(new copyAction(path, Direction.B_TO_A, fileB.getLastModified()));
             }
-        } else if (stateA.equals("=") && stateB.equals("⊥")) {
+        } else if (stateA.equals("=") && stateB.equals("T")) {
             // Fichier supprimé dans B, supprimer dans A
-            actions.add(new deleteAction(path));
-        } else if (stateA.equals("⊥") && stateB.equals("=")) {
+            actions.add(new deleteAction(path, Direction.ONLY_A));
+        } else if (stateA.equals("T") && stateB.equals("=")) {
             // Fichier supprimé dans A, supprimer dans B
-            actions.add(new deleteAction(path));
+            actions.add(new deleteAction(path, Direction.ONLY_B));
         }
 
         return actions;

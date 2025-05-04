@@ -1,25 +1,34 @@
 package Sync;
 
-import java.nio.file.Path;
-import java.util.Date;
+import Enums.Direction;
 
 public class deleteAction implements SyncAction{
-    private String destination;
+    private String relativePath;
+    private Direction direction;
 
-    public deleteAction(String path) {
+
+    public deleteAction(String path , Direction direction) {
+        this.relativePath = path;
+        this.direction = direction;
 
 
     }
 
     @Override
-    public String getDestinationPath() {
-        return this.destination;
+    public String getPath() {
+        return this.relativePath;
     }
-
-
 
     @Override
     public void accept(SyncActionVisitor visitor) {
-        visitor.visitDeleteAction(this, new LocalFileHandler());
+
+        visitor.visitDeleteAction(this);
     }
+
+    @Override
+    public Direction getDirection() {
+        return this.direction;
+    }
+
+
 }
