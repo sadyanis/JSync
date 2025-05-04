@@ -28,7 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-
+/**
+ * Classe représentant un synchroniseur standard.
+ * Implémente l'interface {@link Synchronizer} pour orchestrer la synchronisation
+ * des fichiers entre deux dossiers en utilisant un registre.
+ */
 public class StdSynchronizer implements Synchronizer {
     // pour une premiere version on va synchroniser uniquement les fichiers locals
     private FileHandlerFactory fileHandlerFactory;
