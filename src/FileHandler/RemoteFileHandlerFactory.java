@@ -1,4 +1,4 @@
-package Sync;
+package FileHandler;
 
 public class RemoteFileHandlerFactory implements FileHandlerFactory {
     @Override

@@ -5,6 +5,10 @@ import Registery.*;
 import Sync.*;
 import Registery.Registery;
 import javax.swing.*;
+
+import FileHandler.FileHandlerFactory;
+import FileHandler.LocalFileHandlerFactory;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +16,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import Profile.*;
+import Sync.*;
+import Registery.Registery;
+import Registery.RegisteryBuilder;
+import Registery.RegisteryParser;
+import ProfilePersistence.ProfilePersistence;
+import ProfilePersistence.XmlProfilePersistence;
 public class MainUI {
 	
 	private static final ProfilePersistence profilePersistance = new XmlProfilePersistence(); // Ensure XmlProfilePersistance implements ProfilePersistance
@@ -89,7 +100,8 @@ public class MainUI {
                         Registery registery = loader.load(data);
 
                         // Rediriger vers la nouvelle interface
-                        new SyncInterface(profile, registery, synchronizer);
+                        StdSynchronizer synchronizer = new StdSynchronizer(new LocalFileHandlerFactory(), new XmlProfilePersistence(), new StdFileComparator());
+                        new SyncInterface(profile, registery, synchronizer, frame);// passer synchronizer l'objet aussi a l'autre ui
 
                         frame.dispose(); // Ferme l’ancienne fenêtre
 

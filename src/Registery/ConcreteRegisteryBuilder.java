@@ -2,7 +2,7 @@ package Registery;
 
 import java.util.Date;
 
-import Profile.FileData;
+import File.FileData;
 public class ConcreteRegisteryBuilder implements RegisteryBuilder {
     private Registery registery;
 

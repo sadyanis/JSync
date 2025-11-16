@@ -1,9 +1,14 @@
-package Profile;
+package ProfilePersistence;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import Config.Config;
+import File.FileComposant;
+import Profile.Profile;
+import Profile.StdProfile;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,7 +28,9 @@ import java.util.List;
 public class XmlProfilePersistence implements ProfilePersistence {
     @Override
     public void initProfileWithRegistery(Profile profile) throws IOException {
-        Path filePath = Path.of(profile.getName() + ".sync");
+        //Path filePath = Path.of(profile.getName() + ".sync");
+    	String ProfileName = profile.getName();
+        Path filePath = Path.of(Config.BASE_PATH + "/profiles/" + ProfileName + ".sync");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
             writer.write("<syncProfile>\n");
@@ -35,10 +42,11 @@ public class XmlProfilePersistence implements ProfilePersistence {
             writer.write("<isFolderALocal>" + profile.isFolderALocal() + "</isFolderALocal>\n");
             writer.write("<isFolderBLocal>" + profile.isFolderBLocal() + "</isFolderBLocal>\n");
 
-            writer.write("</syncProfile>\n");
             // Données du registre
             writer.write("<registry>\n");
             writer.write("</registry>\n");
+            
+            writer.write("</syncProfile>\n");
 
 
         }

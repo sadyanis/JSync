@@ -1,8 +1,4 @@
-package Sync;
-
-import Profile.DirectoryComposite;
-import Profile.FileComposant;
-import Profile.FileData;
+package FileHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,33 +11,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import File.DirectoryComposite;
+import File.FileComposant;
+import File.FileData;
+
 public class LocalFileHandler implements FileHandler {
     @Override
-//    public List<FileComposant> getFiles(String path) {
-//        // Parcourir le répertoire local et retourner la liste des fichiers
-//        List<FileComposant> components = new ArrayList<>();
-//        File root = new File(path);
-//
-//        if (!root.exists() || !root.isDirectory()) {
-//            return components;
-//        }
-//
-//        for (File file : root.listFiles()) {
-//
-//            if (file.isFile()) {
-//                FileData fileData = new FileData(file.getAbsolutePath(), new Date(file.lastModified()));
-//                components.add(fileData);
-//            } else if (file.isDirectory()) {
-//                // Récursivement construire ses enfants
-//
-//                List<FileComposant> children = getFiles(file.getPath());
-//                DirectoryComposite dir = new DirectoryComposite(file.getPath(), children);
-//                components.add(dir);
-//            }
-//        }
-//
-//        return components;
-//    }
+
     public List<FileComposant> getFiles(String basePath) {
         return getFilesRecursive(new File(basePath), basePath);
     }
@@ -78,7 +54,7 @@ public class LocalFileHandler implements FileHandler {
         Path dest = Paths.get(destination);
 
         if (Files.isDirectory(src)) {
-            // Copie récursive du dossier
+            // copie recursive du dossier
             Files.walk(src).forEach(path -> {
                 try {
                     Path targetPath = dest.resolve(src.relativize(path));
@@ -86,17 +62,23 @@ public class LocalFileHandler implements FileHandler {
                         Files.createDirectories(targetPath);
                     } else {
                         Files.copy(path, targetPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+                        // afficher un message de succès
+                        System.out.println("Fichier copié : " + path + " vers " + targetPath);
                     }
                 } catch (IOException e) {
                     throw new UncheckedIOException(e);
                 }
             });
         } else {
-            // Copie d'un fichier simple
+            // copie d'un fichier simple
             if (dest.getParent() != null) {
                 Files.createDirectories(dest.getParent()); // Crée les dossiers parents si besoin
+
+                System.out.println("Dossier parent créé : " + dest.getParent());
             }
             Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+            // afficher un message de succès
+            System.out.println("Fichier copié : " + source + " vers " + destination);
         }
     }
 
@@ -108,5 +90,7 @@ public class LocalFileHandler implements FileHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // afficher un message de succès
+        System.out.println("Fichier supprimé : " + path);
     }
 }

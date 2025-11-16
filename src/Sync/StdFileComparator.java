@@ -2,7 +2,7 @@ package Sync;
 
 
 import Enums.Direction;
-import Profile.FileComposant;
+import File.FileComposant;
 
 import java.util.stream.Collectors;
 import java.io.InputStream;
@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import Registery.*;
+
 
 public class StdFileComparator implements FileComparator {
 
@@ -208,4 +209,3 @@ public class StdFileComparator implements FileComparator {
     }
     
 }
-

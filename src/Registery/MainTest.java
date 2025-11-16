@@ -2,7 +2,8 @@ package Registery;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import Profile.FileComposant;
+
+import File.FileComposant;
 
 public class MainTest {
     public static void main(String[] args) {

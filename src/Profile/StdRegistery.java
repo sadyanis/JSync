@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import File.FileComposant;
+
 public class StdRegistery implements Registery {
     private LocalDateTime lastUpdate;
     private List<FileComposant> files;

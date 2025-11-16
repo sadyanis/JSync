@@ -1,9 +1,9 @@
-package Sync;
-
-import Profile.FileComposant;
+package FileHandler;
 
 import java.io.IOException;
 import java.util.List;
+
+import File.FileComposant;
 
 public interface FileHandler {
     List<FileComposant> getFiles(String path);

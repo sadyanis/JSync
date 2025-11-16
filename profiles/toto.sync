@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<syncProfile>
+    
+  <name>toto</name>
+    
+  <folderA>/home/mysthic/Desktop/JSync/JSync/MouloudDossierA</folderA>
+    
+  <folderB>/home/mysthic/Desktop/JSync/JSync/MouloudDossierB</folderB>
+  
+  <isFolderALocal>false</isFolderALocal>
+  
+  <isFolderBLocal>false</isFolderBLocal>
+  
+  <registry>
+    <file>
+      <path>titi.txt</path>
+      <lastModified>2025-05-04T18:53:00.179Z</lastModified>
+    </file>
+  </registry>
+  
+</syncProfile>

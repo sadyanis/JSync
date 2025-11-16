@@ -2,6 +2,7 @@ package Sync;
 
 
 import Enums.Direction;
+import FileHandler.FileHandler;
 
 import java.io.IOException;
 import java.nio.file.Files;

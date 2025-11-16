@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<syncProfile>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <name>mouloud</name>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <folderA>/home/mysthic/Desktop/JSync/JSync/Bouzid</folderA>
+                                       
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <folderB>/home/mysthic/Desktop/JSync/JSync/yanis</folderB>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <registry>
+    <file>
+      <path>test2.txt</path>
+      <lastModified>2025-05-04T12:24:02.704Z</lastModified>
+    </file>
+    <directory>
+      <path>local.dir</path>
+      <lastModified>1970-01-01T00:00:00Z</lastModified>
+      <files/>
+    </directory>
+    <directory>
+      <path>bob.dir</path>
+      <lastModified>1970-01-01T00:00:00Z</lastModified>
+      <files/>
+    </directory>
+    <file>
+      <path>Archi.txt</path>
+      <lastModified>2025-05-04T12:24:02.698Z</lastModified>
+    </file>
+    <directory>
+      <path>dir</path>
+      <lastModified>2025-05-03T20:25:43.811Z</lastModified>
+      <files>
+        <file>
+          <path>dir/ArchiDistribue</path>
+          <lastModified>2025-05-03T20:25:43.811Z</lastModified>
+        </file>
+      </files>
+    </directory>
+  </registry>
+                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</syncProfile>
