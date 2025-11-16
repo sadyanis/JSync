@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <syncProfile>
-                    
+                      
+  
   
   
   
@@ -10,7 +11,8 @@
   
   
   <name>mouloud</name>
-                    
+                      
+  
   
   
   
@@ -20,7 +22,8 @@
   
   
   <folderA>/home/mysthic/Desktop/JSync/JSync/Bouzid</folderA>
-                   
+                     
+  
   
   
   
@@ -31,7 +34,8 @@
   
   
   <folderB>/home/mysthic/Desktop/JSync/JSync/yanis</folderB>
-                    
+                      
+  
   
   
   
@@ -89,7 +93,8 @@
       <files/>
     </directory>
   </registry>
-                  
+                    
+
 
 
 

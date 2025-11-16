@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import File.FileComposant;
-
+/**
+ * Classe représentant un registre de synchronisation standard.
+ * Implémente l'interface {@link Registery}
+ */
 public class StdRegistery implements Registery {
     private LocalDateTime lastUpdate;
     private List<FileComposant> files;

@@ -4,7 +4,9 @@ package File;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
+/*
+    * Représente un fichier.
+ */
 public class FileData implements FileComposant  {
 
     private String path;

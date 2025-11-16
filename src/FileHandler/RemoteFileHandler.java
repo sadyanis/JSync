@@ -3,7 +3,9 @@ package FileHandler;
 import java.util.List;
 
 import File.FileComposant;
-
+/*
+* Implementation de FileHandler pour gérer les fichiers distants.
+* */
 public class RemoteFileHandler implements FileHandler {
 
     @Override
